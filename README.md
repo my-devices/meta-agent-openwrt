@@ -1,8 +1,8 @@
 # macchina.io REMOTE Device Agent and Gateway OpenWRT Packages
 
-OpenWRT package feed meta data for macchina.io REMOTE device agent
-([WebTunnelAgent](https://github.com/my-devices/sdk/blob/master/WebTunnel/WebTunnelAgent/README.md))
-and [gateway](https://github.com/my-devices/gateway).
+OpenWRT package feed meta data for macchina.io REMOTE Device Agent
+([WebTunnelAgent](https://github.com/my-devices/sdk/blob/master/WebTunnel/WebTunnelAgent))
+and [Gateway](https://github.com/my-devices/gateway).
 
 ## About macchina.io REMOTE
 
@@ -33,7 +33,7 @@ To launch an OpenWRT SDK build environment in a Docker container, use one of the
 official OpenWRT SDK Docker images, suitable for your target device.
 
 ```
-$ docker run --rm -v "$(pwd)"/openwrt/bin:/home/build/openwrt/bin -v "$(pwd)"/openwrt/src:/home/build/openwrt/src -it openwrtorg/sdk:ar71xx-generic-19.07.8
+$ docker run --rm -v "$(pwd)"/openwrt/bin:/home/build/openwrt/bin -it openwrtorg/sdk:ar71xx-generic-19.07.8
 ```
 
 This repository can be used as a package feed, so the steps to build the packages
@@ -66,7 +66,35 @@ $ make defconfig
 
 5. Compile the packages
 
+Note: Use either the `rmagent` or `rmgateway` package on a single device.
+While installing both at the same time is possible, it's not recommended
+(and also not very useful) to do so.
+
 ```
 $ make package/rmagent/compile
 $ make package/rmgateway/compile
 ```
+
+The final packages will be stored in the `bin` directory. From there they can
+be transferred to a device, or added to a package repository.
+
+If you have used a Docker container to build the packages (using the command shown
+above to launch the container), the packages will also be available on the
+host system, in the `openwrt/bin` directory.
+
+## Configuration
+
+Both the Device Agent and the Gateway can be configured with a configuration file
+on the target system. For the Device Agent, the configuration file is placed
+in `/etc/rmagent.properties`. For the Gateway, the configuration file can be
+found at `/etc/rmgateway/rmgateway.properties`.
+
+For the Device Agent, at least the Domain UUID must be changed to a valid UUID,
+in order to allow the agent to successfully connect to the server.
+
+If you build your own packages, you can also modify the default configuration files
+included in the `files` sub-directories.
+
+Please refer to the [WebTunnelAgent](https://github.com/my-devices/sdk/blob/master/WebTunnel/WebTunnelAgent/README.md)
+and [Gateway](https://github.com/my-devices/gateway/blob/master/README.md) documentation
+for more information.
