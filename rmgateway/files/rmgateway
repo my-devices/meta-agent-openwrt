@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+SERVER=rmgateway
+PIDFILE=/var/run/${SERVER}.pid
+
+start () {
+    /usr/sbin/$SERVER --daemon --pidfile=$PIDFILE --config=/etc/rmgateway/rmgateway.properties
+}
+
+stop() {
+    if [ -f $PIDFILE ] ; then
+        kill `cat $PIDFILE`
+    fi
+}
+
+restart() {
+    stop
+    sleep 2
+    start
+}
