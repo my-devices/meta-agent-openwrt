@@ -4,6 +4,7 @@ OpenWRT package feed meta data for macchina.io REMOTE Device Agent
 ([WebTunnelAgent](https://github.com/my-devices/sdk/blob/master/WebTunnel/WebTunnelAgent))
 and [Gateway](https://github.com/my-devices/gateway).
 
+
 ## About macchina.io REMOTE
 
 [macchina.io REMOTE](https://macchina.io/remote) provides secure remote access to connected devices
@@ -19,18 +20,30 @@ macchina.io REMOTE is a great solution for secure remote support and maintenance
 as well as for providing secure remote access to devices for end-users via web or
 mobile apps.
 
+
 ## About this Repository
 
 This repository contains package sources for building OpenWRT packages
 for the macchina.io REMOTE device agent (`rmagent`) and gateway (`rmgateway`).
 
+
 ## Building the Packages
 
 The recommended way for building the packages is by using the [OpenWRT SDK docker](https://hub.docker.com/r/openwrtorg/sdk)
-images. It's of course also possible to build using a standard OpenWRT SDK.
+images. It's of course also possible to build using a standard [OpenWRT SDK](https://openwrt.org/docs/guide-developer/toolchain/using_the_sdk)
+installed on a Linux host. Except for launching the Docker image, the actual build steps
+are the same.
 
 To launch an OpenWRT SDK build environment in a Docker container, use one of the
 official OpenWRT SDK Docker images, suitable for your target device.
+In the example below we're building for a generic AR71xx device for OpenWRT 19.07.8
+(`ar71xx-generic-19.07.8`). To find out the OpenWRT version and architecture of your device,
+please refer to the [OpenWRT Table of Hardware](https://openwrt.org/toh/start).
+
+In this example, we'll build the packages for a [GL-AR300M](https://www.gl-inet.com/products/gl-ar300m/)
+which is based on a QCA9531 chipset which requires an `ath79` (`mips_24kc`) target, and
+runs OpenWRT release 19.07.8.
+Therefore, we'll need the OpenWRT SDK docker image tagged `ath79-nand-19.07.8`.
 
 ```
 $ docker run --rm -v "$(pwd)"/openwrt/bin:/home/build/openwrt/bin -it openwrtorg/sdk:ar71xx-generic-19.07.8
@@ -82,6 +95,14 @@ If you have used a Docker container to build the packages (using the command sho
 above to launch the container), the packages will also be available on the
 host system, in the `openwrt/bin` directory.
 
+
+## Installing the Packages
+
+The packages can either be integrated into a custom firmware image, put on a
+custom package repository, or uploaded to the device via the OpenWRT Luci web
+interface (System > Software < Upload Package...).
+
+
 ## Configuration
 
 Both the Device Agent and the Gateway can be configured with a configuration file
@@ -93,8 +114,10 @@ For the Device Agent, at least the Domain UUID must be changed to a valid UUID,
 in order to allow the agent to successfully connect to the server.
 
 If you build your own packages, you can also modify the default configuration files
+(WebTunnelAgent.properties)[https://github.com/my-devices/meta-agent-openwrt/blob/master/rmagent/files/WebTunnelAgent.properties]
+and [rmagent.properties](https://github.com/my-devices/meta-agent-openwrt/blob/master/rmgateway/files/rmgateway.properties)
 included in the `files` sub-directories.
 
 Please refer to the [WebTunnelAgent](https://github.com/my-devices/sdk/blob/master/WebTunnel/WebTunnelAgent/README.md)
 and [Gateway](https://github.com/my-devices/gateway/blob/master/README.md) documentation
-for more information.
+for more information regarding the available settings in the configuration files.
