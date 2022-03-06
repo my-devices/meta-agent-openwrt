@@ -9,7 +9,7 @@ PKG_RELEASE:=1
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=macchina-remote-gateway-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/my-devices/gateway/archive/refs/tags/
-PKG_HASH:=6d218e634613ab02e6cbfb2596dc1176fd6abaa12a21b2b600d691c6c9397cad
+PKG_HASH:=e8e5674bbd8cae3e7caba81f02c7052a9293e98196fd868d81e163b8aba057cd
 
 PKG_LICENSE:=BSL-1.0
 
