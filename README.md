@@ -114,7 +114,7 @@ For the Device Agent, at least the Domain UUID must be changed to a valid UUID,
 in order to allow the agent to successfully connect to the server.
 
 If you build your own packages, you can also modify the default configuration files
-[WebTunnelAgent.propertie](https://github.com/my-devices/meta-agent-openwrt/blob/master/rmagent/files/WebTunnelAgent.properties)
+[WebTunnelAgent.properties](https://github.com/my-devices/meta-agent-openwrt/blob/master/rmagent/files/WebTunnelAgent.properties)
 and [rmagent.properties](https://github.com/my-devices/meta-agent-openwrt/blob/master/rmgateway/files/rmgateway.properties)
 included in the `files` sub-directories.
 
