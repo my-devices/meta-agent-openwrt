@@ -3,13 +3,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rmagent
-PKG_VERSION:=1.14.1
+PKG_VERSION:=1.15.0
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=macchina-remote-sdk-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/my-devices/sdk/archive/refs/tags/
-PKG_HASH:=fa5c2d39f0b05f6098cec9c0ee93aa96f5907ff0781536a3baba2fe705d56d25
+PKG_HASH:=51437117d7f0d59640fe08f494deb8ec02c57eb90674b2a62fee0d38e39e9966
 
 PKG_LICENSE:=BSL-1.0
 

@@ -100,7 +100,7 @@ host system, in the `openwrt/bin` directory.
 
 The packages can either be integrated into a custom firmware image, put on a
 custom package repository, or uploaded to the device via the OpenWRT Luci web
-interface (System > Software < Upload Package...).
+interface (System > Software > Upload Package...).
 
 
 ## Configuration
